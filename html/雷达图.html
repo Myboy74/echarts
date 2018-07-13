@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="box" style="width: 100%; height: 500px; margin: 0 auto;"></div>
+<script src="https://cdn.bootcss.com/echarts/4.0.4/echarts-en.min.js"></script>
+<script>
+    var obj=echarts.init(document.getElementById("box"));
+    var defaultFontSize = 16,
+        defaultTextColor = '#636c72',   //惠城区 字体颜色
+        defaultGlobalColor = ['blue', 'red'],  //乡村贫困人口', '城市贫困人口   得颜色
+        defaultFontFamily = 'microsoft yahei',
+        defaultBackgroundColor = '#fff',  //整体背景颜色
+        defaultShadowColor = 'rgba(204, 214, 235, 0.247059)';
+
+    option = {
+        title: {
+            text: '雷达图',
+            top: 10,
+            left: 'center',
+            textStyle: {
+                fontSize: 18,
+                fontWeight: 400
+            }
+        },
+        backgroundColor: defaultBackgroundColor, // 背景色，默认无背景。
+        color: defaultGlobalColor, // 调色盘颜色列表。
+        textStyle: { // 全局字体样式
+            color: defaultTextColor,
+            fontSize: defaultFontSize
+        },
+        legend: {
+            bottom: 0,
+            left: 'center',
+            width: 1000,
+            itemWidth: 14,
+            itemHeight: 14,
+            itemBorderRadius: 8,
+            textStyle: {
+                // color: "#d7d7d7"
+            },
+            data: ['乡村贫困人口', '城市贫困人口']
+        },
+        tooltip: { // 提示框组件
+            trigger: 'item', // 触发类型 可选为：'axis' | 'item' | 'none'
+            axisPointer: { // 坐标轴指示器，坐标轴触发有效
+                type: 'line', // 默认为直线，可选为：'line' | 'shadow'
+                shadowStyle: {
+                    color: defaultShadowColor
+                }
+            }
+        },
+        radar: {
+            // shape: 'circle',
+            splitArea: {
+                show: false
+            },
+            splitLine: {
+                lineStyle: {
+                    color: ['pink', 'balck', '#eae9e9', '#eae9e9', '#eae9e9', '#6a7791']
+                }
+            },
+            axisLine: {
+                lineStyle: {
+                    color: 'green'
+                }
+            },
+            indicator: [{
+                name: '惠城区',
+                max: 30
+            }, {
+                name: '大亚湾区',
+                max: 10
+            }, {
+                name: '仲恺区',
+                max: 7
+            }, {
+                name: '龙门县',
+                max: 2
+            },
+                {
+                    name: '博罗县',
+                    max: 2
+                },
+                {
+                    name: '惠东县',
+                    max: 2
+                },
+                {
+                    name: '惠阳区',
+                    max: 2
+                }]
+        },
+        series: [{
+            name: '雷达图',
+            type: 'radar',
+            symbol: 'none',
+            areaStyle: {
+                normal: {
+                    opacity: .4
+                }
+            },
+            itemStyle: {
+                normal: {
+                    lineStyle: {
+                        width: 2
+                    }
+                },
+                emphasis: {
+                    areaStyle: {
+                        opacity: .3
+                    }
+                }
+            },
+            data: [{
+                value: [17.2, 7.9, 1.6, 0.8, 0.8],
+                name: '乡村贫困人口',
+                z: 3
+            }, {
+                value: [5.4, 2.6, 1.2, 1.0, 0.5],
+                name: '城市贫困人口',
+                z: 1
+            }
+            ]
+        }]
+    };
+    obj.setOption(option);
+</script>
+</body>
+</html>

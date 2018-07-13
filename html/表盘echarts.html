@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .big{
+            width: 800px;
+            height: 300px;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+<div class="big">
+    <div id="charts" style="width: 100%; height: 100%"></div>
+</div>
+<script src="https://cdn.bootcss.com/echarts/4.0.4/echarts-en.min.js"></script>
+<script>
+    var big=echarts.init(document.getElementById("charts"));
+    option = {
+        tooltip : {
+            formatter: "{a} <br/>{c} {b}"
+        },
+        toolbox: {
+            show: true,
+            feature: {
+                restore: {show: true},
+                saveAsImage: {show: true}
+            }
+        },
+        series : [
+            {
+                name: '速度',
+                type: 'gauge',
+                z: 3,
+                min: 0,
+                max:1000,
+                splitNumber: 10,
+                radius: '80%',
+                axisLine: {            // 坐标轴线
+                    lineStyle: {       // 属性lineStyle控制线条样式
+                        width: 0,
+                        color:[[0.2, '#F1C383'], [0.8, '#F1C383'], [1, '#F1C383']]
+                    }
+                },
+                axisTick: {            // 坐标轴小标记
+                    length: 15,        // 属性length控制线长
+                    lineStyle: {       // 属性lineStyle控制线条样式
+                        color: 'auto'
+                    }
+                },
+                splitLine: {           // 分隔线
+                    length: 20,         // 属性length控制线长
+                    lineStyle: {       // 属性lineStyle（详见lineStyle）控制线条样式
+                        color: 'auto'
+                    }
+                },
+                title : {
+                    textStyle: {       // 其余属性默认使用全局文本样式，详见TEXTSTYLE
+                        fontWeight: 'bolder',
+                        fontSize: 20,
+                        fontStyle: 'italic'
+                    }
+                },
+                detail : {
+                    textStyle: {       // 其余属性默认使用全局文本样式，详见TEXTSTYLE
+                        fontWeight: 'bolder'
+                    }
+                },
+                data:[{value: 40}]
+            }
+        ]
+    };
+    big.setOption(option);
+</script>
+</body>
+</html>

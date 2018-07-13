@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #box{
+            width: 1200px;
+            height:800px;
+            margin: 0 auto;
+            color: #78c4ff;
+        }
+    </style>
+</head>
+<body>
+<div id="box"></div>
+<script src="https://cdn.bootcss.com/echarts/4.0.4/echarts-en.min.js"></script>
+<script>
+    var u_myChart13 = echarts.init(document.getElementById('box'));
+    var data1 = [23923, 34210, 0, 124444, 314284];
+    var data1Max = Math.max.apply( Math, data1 );
+    var data2 = [];
+    for(var i = 0;i<data1.length;i++){
+        data2.push(data1Max*1.2)
+    }
+    console.log(data2);
+    option = {
+        backgroundColor:'#158cc9',
+        grid: {
+            left: '2%',
+            top: '5%',
+            bottom: '3%',
+            right: '30%',
+            containLabel: true
+        },
+        legend: {
+            show: false
+        },
+
+        xAxis: {
+            splitLine: {
+                show: false
+            },
+            axisTick: {
+                show: false
+            },
+            axisLine: {
+                show: false
+            },
+            axisLabel: {
+                show: false
+            }
+        },
+        yAxis: {
+            splitLine: {
+                show: false
+            },
+            axisTick: {
+                show: false
+            },
+            axisLine: {
+                show: false
+            },
+
+            axisLabel: {
+                color: '#ffffff',
+                fontSize: 32,
+                // align:"left",
+            },
+            data: [{
+                value:"高明区",
+                align:"right"
+            },
+                {
+                    value:"三水区",
+                    align:"right"
+                },
+                {
+                    value:"三水及区",
+                    align:"right"
+                }
+            ]
+            //data:[]
+        },
+        series: [{
+            type: 'bar',
+            barGap: '-80%',
+            barWidth: 22,
+            itemStyle: {
+                normal: {
+                    color: new echarts.graphic.LinearGradient(
+                        1, 0, 0, 0,
+                        [
+                            {offset: 1, color: '#a6ff33'},
+                            {offset: 0.3, color: '#ddffb2'},
+                            {offset: 0, color: '#ffffff'},
+                        ]
+                    ),
+                    barBorderRadius: 12
+                }
+            },
+            /*label: {
+                normal: {
+                    show: true,
+                    position: 'right',
+                    fontSize: 32,
+                    color: '#ffffff'
+                }
+            },*/
+            z: -5,
+            data:data1
+            //data: []
+        }, {
+            type: 'bar',
+            barGap: '-100%',
+            barWidth: 22,
+            itemStyle: {
+                normal: {
+                    color: '#158cc9',
+                    borderColor: 'rgba(255,255,255,0.5)',
+                    borderWidth: 2,
+                    shadowColor: '#ffffff',
+                    shadowBlur: 10,
+                    barBorderRadius: 12
+                }
+            },
+            label: {
+                normal: {
+                    show: true,
+                    position: 'right',
+                    fontSize: 32,
+                    color: '#fff000',
+                    offset: [80,0],
+                    formatter: function(params){
+                        return data1[params.dataIndex]===0?'-':data1[params.dataIndex]+"/平方米"
+                    }
+                }
+            },
+            z: -12,
+            data: data2
+        }]
+    };
+    u_myChart13.setOption(option);
+</script>
+</body>
+</html>

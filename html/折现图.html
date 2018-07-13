@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="box" style="width: 100%; height: 500px; margin: 0 auto;"></div>
+<script src="https://cdn.bootcss.com/echarts/4.0.4/echarts-en.min.js"></script>
+<script>
+    var obj=echarts.init(document.getElementById("box"));
+    option = {
+        backgroundColor: 'rgb(41,121,255)',
+        title: {
+            text: '折现拐点样式及背景渐变色'
+        },
+        grid: {
+            left: '5%',
+            right: '5%',
+            bottom: '7%',
+            top: '5%',
+            containLabel: true
+        },
+        xAxis: {
+            data: ['研究生及以上', '10.11', '10.12', '10.13', '10.14', '10.15', '10.16','10.17'],
+            type: 'category',
+            boundaryGap: false,
+            axisLine: {
+                // show:false,
+                onZero: true
+            },
+        },
+        yAxis: {
+
+            type: 'value',
+            //   max: 500,
+            name: '单位:',
+            //   min: 0,
+            //   interval: 25,
+
+        },
+        series: [{
+            type: 'line',
+            symbolSize:5,
+            //第六个拐点样式设置
+            data: [12, 15, 11, 23, 25, 12, {
+                value: 18,
+                symbolSize: 7,
+                label: {
+                    normal: {
+                        show: true,
+                        formatter: '￥{c}.00',
+                        fontSize: 12,
+                        distance: 10
+                    }
+                },
+                itemStyle: {
+                    normal: {
+                        borderColor: 'rgba(255,255,255,.3)',
+                        borderWidth: 7
+                    }
+                }
+            },22],
+            lineStyle: {
+                normal: {
+                    width:2,
+                    color: '#fff'
+                }
+            },
+            itemStyle:{
+                normal:{
+                    color:'#fff'
+                }
+            },
+//			           	label: {
+//				           	normal: {
+//				               show: true,
+//				               formatter: '￥{c}.00',
+//				               fontSize:10
+//				            }
+//			           	},
+            markArea: {
+                silent: true,
+                data: [
+                    [{
+                        yAxis: 0,
+                        itemStyle: {
+                            normal: {
+                                color: {
+                                    type: 'linear',
+                                    x: 0,
+                                    y: 0,
+                                    x2: 0,
+                                    y2: 1,
+                                    colorStops: [{
+                                        offset: 0, color: 'rgba(41,129,253,0)'
+                                    }, {
+                                        offset: 1, color: 'rgb(44,129,253)'
+                                    }],
+                                    globalCoord: false
+                                }
+                            }
+                        },
+                    }, {
+                        yAxis: 100
+                    }]
+                ]
+            }
+        }]
+    };
+    obj.setOption(option);
+</script>
+</body>
+</html>

@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="box" style="width: 100%; height: 500px; margin: 0 auto;"></div>
+<script src="https://cdn.bootcss.com/echarts/4.0.4/echarts-en.min.js"></script>
+<script>
+    var obj=echarts.init(document.getElementById("box"));
+    // app.title = '正负条形图';
+    option = {
+        color:["#44e1ff","pink","#ffa1b5","#78c4ff"],
+        tooltip : {
+            trigger: 'item',
+            axisPointer : {            // 坐标轴指示器，坐标轴触发有效
+                type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+            },
+            //formatter:'{c0}<br/>{c1}'+'Math.ads(-1)'
+            formatter:function(params){
+                //return params.seriesName;
+
+                //alert(params.color)
+                var res = params.name+':'+Math.abs(params.value)
+                return res;
+            }
+        },
+        legend: {
+            data:[ '外来人口女', '户籍人口女','外来人口男','户籍人口男']
+        },
+        grid: {
+            left: '3%',
+            right: '4%',
+            bottom: '3%',
+            containLabel: true
+        },
+        xAxis : [
+            {
+                // show:false,
+                type : 'value',
+                axisLine:{
+                    show:false,
+                    // lineStyle:{
+                    //     color:"#fff",
+                    // }
+                },
+                axisTick : {show: false},
+                axisLabel:{
+
+                    formatter:function(value,index){
+                        return Math.abs(value)
+                    }
+                },
+                splitLine:{
+                    show:false
+                }
+            }
+        ],
+        yAxis : [
+            {
+                // show:false,
+                type : 'category',
+                axisLine:{
+                    show:false
+                },
+                axisTick : {show: false},
+                data : ['0-4岁','5-9岁','10-14岁','15-19岁','20-24岁','25-29岁','30-34岁','35-39岁',
+                    '40-44岁','45-49岁','50-54岁','55-59岁','60-64岁','65-69岁','70-74岁','75-79岁',
+                    '80-84岁','89-90岁','90岁以上'],
+            }
+        ],
+        series : [
+            /*{
+                name:'利润',
+                type:'bar',
+                label: {
+                    normal: {
+                        show: true,
+                        position: 'inside'
+                    }
+                },
+                data:[200, 170, 240, 244, 200, 220, 210]
+            },*/
+            {
+                name:'外来人口女',
+                type:'bar',
+                stack: '总量',
+                label: {
+                    normal: {
+                        ///show: true
+                    }
+                },
+                data:[16.73417, 17.62174, 20.55934, 15.69518, 20.86421, 17.52039,
+                    16.6474,23.33085,17.47646,16.79552,12.37106,17.40439,27.17277,
+                    25.68496,18.28323,16.53832,13.77221,18.3519,15.83675,
+                    15.79401,32.65757,15.09662,44.48857,22.82015,14.37398,12.18471,
+                    15.55708,15.90678,28.83229,45.96583]
+            }, {
+                name:'户籍人口男',
+                type:'bar',
+                stack: '总量',
+                label: {
+                    normal: {
+                        //show: true,
+                        //position: 'left'
+                    }
+                },
+                data:[-38.54, -46.94, -48.07, -45.66, -50.32, -48.43, -41.39,-41.37,
+                    -35.85,-39.13,-47.61,-49.33,-46.39,-35.55,-49.69,-47.56,-44.84,-49.64,-49.19,
+                    -52.63,-41.84,-60.65,-49.18,-55.09,-51.11,-44.95,-39.67,-47.59,-39.22,-47.33]
+            },
+
+            {
+                name:'外来人口男',
+                type:'bar',
+                stack: '总量',
+                label: {
+                    normal: {
+                        //show: true,
+                        //position: 'left'
+                    }
+                },
+                data:[-38.54, -46.94, -48.07, -45.66, -50.32, -48.43, -41.39,-41.37,
+                    -35.85,-39.13,-47.61,-49.33,-46.39,-35.55,-49.69,-47.56,-44.84,-49.64,-49.19,
+                    -52.63,-41.84,-60.65,-49.18,-55.09,-51.11,-44.95,-39.67,-47.59,-39.22,-47.33]
+            },
+            {
+                name:'户籍人口女',
+                type:'bar',
+                stack: '总量',
+                label: {
+                    normal: {
+                        ///show: true
+                    }
+                },
+                data:[16.73417, 17.62174, 20.55934, 15.69518, 20.86421, 17.52039,
+                    16.6474,23.33085,17.47646,16.79552,12.37106,17.40439,27.17277,
+                    25.68496,18.28323,16.53832,13.77221,18.3519,15.83675,
+                    15.79401,32.65757,15.09662,44.48857,22.82015,14.37398,12.18471,
+                    15.55708,15.90678,28.83229,45.96583]
+            },
+        ]
+    };
+    obj.setOption(option);
+</script>
+</body>
+</html>
